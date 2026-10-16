@@ -36,8 +36,8 @@ jobs:
           TOUGE_SERVER_IP: ${{ secrets.TOUGE_SERVER_IP }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.TOUGE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.TOUGE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
           ssh -o StrictHostKeyChecking=no -p 44884 root@${TOUGE_SERVER_IP%%:*} << 'EOF'
             cd /root/flash-web-app || (echo "项目目录不存在"; exit 1;)
             git pull origin main || (echo "git拉取失败"; exit 1;)
